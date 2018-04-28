@@ -11,13 +11,14 @@ public class Article {
 	private String author;
 	private String year;
 	private String url;
+	private String abstrac; //usei o url para o abstract
 	//ignorei contentType
 	
 	public Article(){		
 	}
 	
 	public Article(String title, String journal, String volume, String number, String doi, String author, String year,
-			String url) {
+			String url, String abstrac) {
 		super();
 		this.title = title;
 		this.journal = journal;
@@ -27,6 +28,7 @@ public class Article {
 		this.author = author;
 		this.year = year;
 		this.url = url;
+		this.abstrac = abstrac;
 	}
 
 	public String getAuthor() {
@@ -92,6 +94,14 @@ public class Article {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public String getAbstrac() {
+		return abstrac;
+	}
+
+	public void setAbstrac(String abstrac) {
+		this.abstrac = abstrac;
+	}
 
 	@Override
 	public String toString() {
@@ -105,7 +115,8 @@ public class Article {
 		str.append("number = {"+number+"}\n");
 		str.append("doi = {"+doi+"}\n");
 		str.append("url = {"+url+"}\n");
-		str.append("}");
+		str.append("abstract = {"+abstrac+"}\n");
+		str.append("}\n");
 		
 		return str.toString();
 	}

@@ -26,14 +26,14 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			carregaDados("SearchResults2.csv");
+			carregaDados("tive que fazer assim-alteraPainelDeControleBarrinha; Salva excel e csv.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro na leitura do primeiro arquivo");
 		}
 		try {
-			escreveDados("SearchResults2.bib");
+			escreveDados("Springer.bib");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,10 +47,10 @@ public class App {
 		try (Scanner sc = new Scanner(Files.newBufferedReader(path1, Charset.forName("utf8")))) {
 			sc.useDelimiter("[|\n]"); // separadores: ; e nova linha
 			String header = sc.nextLine(); // pula cabecalho
-			String author, title, journal, year, volume, number, doi, url;
+			System.out.println(header);
+			String author, title, journal, year, volume, number, doi, url, abstrac;
 			String bookseries, contentType; // pular na leitura
 
-			int cont = 0;
 			while (sc.hasNext()) {
 				title = sc.next();
 				journal = sc.next();
@@ -61,12 +61,13 @@ public class App {
 				author = sc.next();
 				year = sc.next();
 				url = sc.next();
+				abstrac = url;
 				if (sc.hasNext())
 					contentType = sc.next();
-				artigos.add(new Article(title, journal, volume, number, doi, author, year, url));
-				cont++;
+				artigos.add(new Article(title, journal, volume, number, doi, author, year, url, abstrac));
 			}
 			System.out.println(artigos);
+			System.out.println(artigos.size());
 		}
 	}
 
