@@ -25,15 +25,19 @@ public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		String nomeArquivoCSV = (args[0]);
+		String nomeArquivoBIB = (args[1]);
 		try {
-			carregaDados("tive que fazer assim-alteraPainelDeControleBarrinha; Salva excel e csv.csv");
+			carregaDados(nomeArquivoCSV);
+			//carregaDados("testae.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro na leitura do primeiro arquivo");
 		}
 		try {
-			escreveDados("Springer.bib");
+			escreveDados(nomeArquivoBIB);
+			//escreveDados("testae.bib");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +49,7 @@ public class App {
 	public static void carregaDados(String arquivo) throws IOException {
 		Path path1 = Paths.get(arquivo);
 		try (Scanner sc = new Scanner(Files.newBufferedReader(path1, Charset.forName("utf8")))) {
-			sc.useDelimiter("[|\n]"); // separadores: ; e nova linha
+			sc.useDelimiter("[|\n]"); // separadores: | e nova linha
 			String header = sc.nextLine(); // pula cabecalho
 			System.out.println(header);
 			String author, title, journal, year, volume, number, doi, url, abstrac;
@@ -67,7 +71,7 @@ public class App {
 				artigos.add(new Article(title, journal, volume, number, doi, author, year, url, abstrac));
 			}
 			System.out.println(artigos);
-			System.out.println(artigos.size());
+			System.out.println("Concluido, quantidade de artigos:" + artigos.size());
 		}
 	}
 
@@ -76,5 +80,6 @@ public class App {
 		for (Article a : artigos) {
 			writer.println(a.toString());
 		}
+		writer.flush();
 	}
 }
